@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="http://michaeldickas.com/wp-content/themes/nova-lite/style.css" media="screen"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes"><title>Coming home – Michaels Bike Tour</title><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//s.w.org"><link rel="stylesheet" id="glt-toolbar-styles-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/toolbar.css" type="text/css" media="all"><link rel="stylesheet" id="google-language-translator-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/style.css" type="text/css" media="all"><link rel="stylesheet" id="menu-image-css" href="http://michaeldickas.com/wp-content/plugins/menu-image/menu-image.css" type="text/css" media="all"><link rel="stylesheet" id="bootstrap.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/bootstrap.min.css" type="text/css" media="all"><link rel="stylesheet" id="flexslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/flexslider.css" type="text/css" media="all"><link rel="stylesheet" id="font-awesome.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/font-awesome.min.css" type="text/css" media="all"><link rel="stylesheet" id="nivoslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/nivoslider.css" type="text/css" media="all"><link rel="stylesheet" id="prettyPhoto-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/prettyPhoto.css" type="text/css" media="all"><link rel="stylesheet" id="novalite-google-fonts-css" href="//fonts.googleapis.com/css?family=Montez%7COxygen%7CYanone+Kaffeesatz&subset=latin%2Clatin-ext&ver=4.7.16" type="text/css" media="all"><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery-migrate.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-flags.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-toolbar.js"></script><script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><script type="text/javascript">
+		var $j = jQuery.noConflict();
+		$j(function(){
+			var center = new google.maps.LatLng(0.0, 0.0);
+			var myOptions = {
+		      zoom: 9,
+		      center: center,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		    var image = "http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin.png";
+		    var shadow = new google.maps.MarkerImage("http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin_shadow.png",
+		    	new google.maps.Size(39, 23),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(12, 25));
+		    var marker = new google.maps.Marker({
+					position: center, 
+					map: map, 
+					title:"Post Location",
+					icon: image,
+					shadow: shadow});
+			
+			var allowDisappear = true;
+			var cancelDisappear = false;
+		    
+			$j(".geolocation-link").mouseover(function(){
+				$j("#map").stop(true, true);
+				var lat = $j(this).attr("name").split(",")[0];
+				var lng = $j(this).attr("name").split(",")[1];
+				var latlng = new google.maps.LatLng(lat, lng);
+				placeMarker(latlng);
+				
+				var offset = $j(this).offset();
+				$j("#map").fadeTo(250, 1);
+				$j("#map").css("z-index", "99");
+				$j("#map").css("visibility", "visible");
+				$j("#map").css("top", offset.top + 20);
+				$j("#map").css("left", offset.left);
+				
+				allowDisappear = false;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j(".geolocation-link").mouseover(function(){
+			});
+			
+			$j(".geolocation-link").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				setTimeout(function() {
+					if((allowDisappear) && (!cancelDisappear))
+					{
+						$j("#map").fadeTo(500, 0, function() {
+							$j("#map").css("z-index", "-1");
+							allowDisappear = true;
+							cancelDisappear = false;
+						});
+					}
+			    },800);
+			});
+			
+			$j("#map").mouseover(function(){
+				allowDisappear = false;
+				cancelDisappear = true;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j("#map").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				$j(".geolocation-link").mouseout();
+			});
+			
+			function placeMarker(location) {
+				map.setZoom(9);
+				marker.setPosition(location);
+				map.setCenter(location);
+			}
+			
+			google.maps.event.addListener(map, "click", function() {
+				window.location = "http://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
+			});
+		});
+	</script><link type="text/css" rel="stylesheet" href="http://michaeldickas.com/wp-content/plugins/geolocation-plus/style.css"><style type="text/css">p.hello { font-size:12px; color:darkgray; }#google_language_translator, #flags { text-align:left; }#google_language_translator, #language { clear:both; width:160px; text-align:right; }#language { float:right; }#flags { text-align:right; width:165px; float:right; clear:right; }#flags ul { float:right !important; }p.hello { text-align:right; float:right; clear:both; }.glt-clear { height:0px; clear:both; margin:0px; padding:0px; }#flags { width:165px; }#flags a { display:inline-block; margin-left:2px; }.goog-tooltip {display: none !important;}.goog-tooltip:hover {display: none !important;}.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}#google_language_translator { width:auto !important; }.goog-te-banner-frame{visibility:hidden !important;}body { top:0px !important;}</style><style type="text/css">
+
+
+</style><style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><style>.simplemap img{max-width:none !important;padding:0 !important;margin:0 !important;}.staticmap,.staticmap img{max-width:100% !important;height:auto !important;}.simplemap .simplemap-content{display:none;}</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #0a0000; background-image: url("http://michaeldickas.com/wp-content/uploads/2015/06/DSC04638r.jpg"); background-position: left top; background-size: auto; background-repeat: repeat-y; background-attachment: scroll; }
+</style><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62252925-1', 'auto');
+  ga('send', 'pageview');
+</script></head><body class="post-template-default single single-post postid-701 single-format-standard custom-background custombody">
+
+<div id="wrapper">
+    
+    <header id="header"><div class="container">
+        
+            <div class="row">
+                
+                <div class="span3">
+                   
+                    <div id="logo">
+                            
+                        <a href="http://michaeldickas.com/" title="Michaels Bike Tour">
+                                
+                            Michaels Bike Tour                                    
+                        </a>
+                                
+                    </div>
+                    
+                </div>
+    
+                <div class="span9">
+                  
+                    <nav id="mainmenu"><ul id="menu-main-menu" class="menu"><li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-35"><a href="http://michaeldickas.com/" class="menu-image-title-before"><span class="menu-image-title">Home</span></a></li>
+<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="http://michaeldickas.com/about-me/" class="menu-image-title-after"><span class="menu-image-title">About me</span></a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="http://michaeldickas.com/route-map/" class="menu-image-title-after"><span class="menu-image-title">Route Map</span></a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="http://michaeldickas.com/thanks-to/" class="menu-image-title-after"><span class="menu-image-title">Thanks to</span></a></li>
+</ul></nav></div>
+                
+            </div>
+            
+        </div>
+    
+    </header><div class="container content">
+	
+    <div class="row">
+       
+    <div class="pin-article span12 full post-701 post type-post status-publish format-standard has-post-thumbnail hentry category-travel">
+		
+		<div class="pin-container"><img src="http://michaeldickas.com/wp-content/uploads/2015/06/DSC05747r-1170x429.jpg" class="attachment-blog size-blog wp-post-image" alt=""></div>
+<article class="article"><h1 class="title"> Coming home </h1>
+			
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 06/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation701" name="49.56541430000001,10.871409999999969" onclick="return false;">Posted from Herzogenaurach, Bavaria, Germany.</a></p>
+<p>I am at home.</p>
+<p>I got a great welcome by my parents, it is a great feeling to have achieved it and at the same time the end of a great adventure.</p>
+<p>Thank you so much for supporting me by dedicating your time to read this blog.</p>
+<p>Today´s route: 76,37 km</p>
+<p><a href="http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach.jpg"><img class="alignnone size-full wp-image-707" src="http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach.jpg" alt="Gunzenhausen - Herzogenaurach" width="314" height="357" srcset="http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach.jpg 314w,http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach-21x24.jpg 21w,http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach-32x36.jpg 32w,http://michaeldickas.com/wp-content/uploads/2015/06/Gunzenhausen-Herzogenaurach-42x48.jpg 42w" sizes="(max-width: 314px) 100vw, 314px"></a></p>
+<h3 class="comments">39 comments</h3>
+<section id="comments"><ul class="commentlist"><li class="comment even thread-even depth-1" id="li-comment-313">
+ 
+ <article id="comment-313" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/0007c55e459cfb28fa4b695ae0bbc4ea?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/0007c55e459cfb28fa4b695ae0bbc4ea?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Francisco Martinez</cite></span>
+            <time datetime="2015-06-29T15:15:50+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-313">29/06/2015 at 15:15</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-313", "313", "respond", "701" )' aria-label="Reply to Francisco Martinez">Reply</a>      		    		</time></header><p>Ganz grosse Klasse!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-309">
+ 
+ <article id="comment-309" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/a5d78b030f807c296c21c6833f4079ea?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/a5d78b030f807c296c21c6833f4079ea?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Antonis</cite></span>
+            <time datetime="2015-06-24T22:50:06+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-309">24/06/2015 at 22:50</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-309", "309", "respond", "701" )' aria-label="Reply to Antonis">Reply</a>      		    		</time></header><p>My friend you are the best! Congratulations! This feeling that you got achieving your goal worths all the effort that you put, all the pain that you felt, all the sweat and patience that you did! And then you arrive, and you remember 10 days before when you were saying to yourself “why I am doing this to myself”, at that moment you say “next time I’ll do the double”!<br>
+My trip to this satisfaction just started! We left today from Alicante! On Sunday is my big day! As I told you 2 months ago: “let’s do it!”</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article><ul class="children"><li class="comment even depth-2" id="li-comment-318">
+ 
+ <article id="comment-318" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/a27b1cbc2bcb3b8e93fc7714b3da37ab?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/a27b1cbc2bcb3b8e93fc7714b3da37ab?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Michael</cite></span>
+            <time datetime="2015-07-02T19:04:37+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-318">02/07/2015 at 19:04</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-318", "318", "respond", "701" )' aria-label="Reply to Michael">Reply</a>      		    		</time></header><p>Thanks for this comment Antonis, but as I always said to you during our training sessions, I am an amateur and you play Champions League. I congratulate you to your excellent result in the Ironman competition in Nice/France. My warmest thanks again for the great time we spent together in the gym preparing our respective challenge.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+</ul></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-307">
+ 
+ <article id="comment-307" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/4a578d5dc62dfc748c013dcdcd3b7a5b?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/4a578d5dc62dfc748c013dcdcd3b7a5b?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Francois</cite></span>
+            <time datetime="2015-06-23T19:08:01+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-307">23/06/2015 at 19:08</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-307", "307", "respond", "701" )' aria-label="Reply to Francois">Reply</a>      		    		</time></header><p>Ce n’est jamais trop tard pour bien faire …. So some days after the end, congratulations ! Enjoy the holidays now 🙂</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-293">
+ 
+ <article id="comment-293" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/0c1a0f8366ef7e4a4f779c085038c49e?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/0c1a0f8366ef7e4a4f779c085038c49e?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>cuñao</cite></span>
+            <time datetime="2015-06-13T14:34:07+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-293">13/06/2015 at 14:34</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-293", "293", "respond", "701" )' aria-label="Reply to cuñao">Reply</a>      		    		</time></header><p>Grande Mike</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-292">
+ 
+ <article id="comment-292" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/98bbb21f00ce724ddcdaf1129092e0d6?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/98bbb21f00ce724ddcdaf1129092e0d6?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Christoph</cite></span>
+            <time datetime="2015-06-12T16:20:27+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-292">12/06/2015 at 16:20</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-292", "292", "respond", "701" )' aria-label="Reply to Christoph">Reply</a>      		    		</time></header><p>Tolles Abenteuer und grossartige Leistung! Wirklich beeindruckend!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-291">
+ 
+ <article id="comment-291" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/6bda97ed330b0c66abc702fbf456a9e8?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/6bda97ed330b0c66abc702fbf456a9e8?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Bernardo Viana</cite></span>
+            <time datetime="2015-06-12T12:08:09+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-291">12/06/2015 at 12:08</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-291", "291", "respond", "701" )' aria-label="Reply to Bernardo Viana">Reply</a>      		    		</time></header><p>Great! well done. now it’s time to enjoy the 3rd half<br>
+cheers<br>
+Bernardo</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-290">
+ 
+ <article id="comment-290" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/43bf38cfac58b620327fc8e445b45490?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/43bf38cfac58b620327fc8e445b45490?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Andre</cite></span>
+            <time datetime="2015-06-11T08:17:20+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-290">11/06/2015 at 08:17</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-290", "290", "respond", "701" )' aria-label="Reply to Andre">Reply</a>      		    		</time></header><p>Herzlichen Glückwunsch, Micha!! Well done! Ich freue mich schon auf deinen ausführlichen Bericht. André</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-287">
+ 
+ <article id="comment-287" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/c010f2fcd10f1334888a425e84c386a8?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/c010f2fcd10f1334888a425e84c386a8?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Myriam</cite></span>
+            <time datetime="2015-06-09T19:36:45+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-287">09/06/2015 at 19:36</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-287", "287", "respond", "701" )' aria-label="Reply to Myriam">Reply</a>      		    		</time></header><p>You did it, that’s fantastic! Now enjoy your holidays.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-286">
+ 
+ <article id="comment-286" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/a3c2ebdf4c92bcbd68dc615d45c13d4f?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/a3c2ebdf4c92bcbd68dc615d45c13d4f?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>yvonne</cite></span>
+            <time datetime="2015-06-09T17:57:49+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-286">09/06/2015 at 17:57</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-286", "286", "respond", "701" )' aria-label="Reply to yvonne">Reply</a>      		    		</time></header><p>ENHORABUENA!!! WOW!!! Hast es wirklich geschafft! : ) Bin beeindruckt und freue mich für Dich!! Hast bestimmt viel zu erzählen… bin schon gespannt!!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-285">
+ 
+ <article id="comment-285" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/b807bd826b2f84192e39b058f7d3e0f4?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/b807bd826b2f84192e39b058f7d3e0f4?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Gildo</cite></span>
+            <time datetime="2015-06-09T17:22:03+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-285">09/06/2015 at 17:22</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-285", "285", "respond", "701" )' aria-label="Reply to Gildo">Reply</a>      		    		</time></header><p>Michael, campeón!</p>
+<p>Eres un crack! Cuando empezaste la ruta temía que no llegaras al final porque los dolores de rodilla son muy chungos para los ciclistas, pero lo has superado todo, sorteando el mal tiempo incluido.<br>
+Enhorabuena. Un gran ejemplo para muchos!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-284">
+ 
+ <article id="comment-284" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/3218821828a830c986ebf7fa57db18a7?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/3218821828a830c986ebf7fa57db18a7?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Laurence</cite></span>
+            <time datetime="2015-06-09T17:10:47+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-284">09/06/2015 at 17:10</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-284", "284", "respond", "701" )' aria-label="Reply to Laurence">Reply</a>      		    		</time></header><p>Herzlichen Glückwunsch alter Mann. Du hast es und wahrscheinlich bist du auch geschafft!<br>
+A bissl Rammsteinerischen quatsch fur Dich:<br>
+Im weißen Sand der alte Mann<br>
+zitternd seine Pfeife raucht<br>
+nur das Bier und die Bayern wissen<br>
+wozu er diesen Fahrrad braucht</p>
+<p>Ein Prosit!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-283">
+ 
+ <article id="comment-283" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/bc1c5503c62665d4fb2812cccd6b5265?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/bc1c5503c62665d4fb2812cccd6b5265?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Nacho</cite></span>
+            <time datetime="2015-06-09T16:32:56+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-283">09/06/2015 at 16:32</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-283", "283", "respond", "701" )' aria-label="Reply to Nacho">Reply</a>      		    		</time></header><p>Enhorabuena Michael! Ahora toca descanso y disfrutar de una buena cerveza alemana.</p>
+<p>Saludos.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-282">
+ 
+ <article id="comment-282" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/0d19ae63250960df0e48b988a0c599ea?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/0d19ae63250960df0e48b988a0c599ea?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Sumi</cite></span>
+            <time datetime="2015-06-09T11:40:41+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-282">09/06/2015 at 11:40</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-282", "282", "respond", "701" )' aria-label="Reply to Sumi">Reply</a>      		    		</time></header><p>Wow! Congratulations Michael! Unglaublich!! Jetzt ein kaltes Bierchen geniessen (oder sieben!).<br>
+Enjoy the rest of your break! Take care.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-281">
+ 
+ <article id="comment-281" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/67a9a669440f545e345185ac8598fffd?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/67a9a669440f545e345185ac8598fffd?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Maria Koleva</cite></span>
+            <time datetime="2015-06-09T11:40:07+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-281">09/06/2015 at 11:40</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-281", "281", "respond", "701" )' aria-label="Reply to Maria Koleva">Reply</a>      		    		</time></header><p>Michael,<br>
+You are superhuman.<br>
+I totally admire you.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-280">
+ 
+ <article id="comment-280" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/983b1d9be8ca3786cb3814a20ee28bcf?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/983b1d9be8ca3786cb3814a20ee28bcf?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Federico</cite></span>
+            <time datetime="2015-06-09T09:00:07+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-280">09/06/2015 at 09:00</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-280", "280", "respond", "701" )' aria-label="Reply to Federico">Reply</a>      		    		</time></header><p>Felicidades Michael!!</p>
+<p>Me alegro muchisimo por ti que hayas podido conquistar este reto.</p>
+<p>Un fuerte abrazo y nos vemos pronto. Fede</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-277">
+ 
+ <article id="comment-277" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/c1e1027c1b8165f1cf812bdd40e742c3?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/c1e1027c1b8165f1cf812bdd40e742c3?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Conor</cite></span>
+            <time datetime="2015-06-08T18:02:19+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-277">08/06/2015 at 18:02</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-277", "277", "respond", "701" )' aria-label="Reply to Conor">Reply</a>      		    		</time></header><p>Well done!  Thats a considerable achievement. One to tell the granchildren</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-276">
+ 
+ <article id="comment-276" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/e083dca888d8713160d91f6ddc633952?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/e083dca888d8713160d91f6ddc633952?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite><a href="http://michaeldickas.com" rel="external nofollow" class="url">Thomas Hoffmann</a></cite></span>
+            <time datetime="2015-06-08T16:02:45+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-276">08/06/2015 at 16:02</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-276", "276", "respond", "701" )' aria-label="Reply to Thomas Hoffmann">Reply</a>      		    		</time></header><p>Ganz große Performance. Super Trip. Jetzt bist Du einer der größten Radler aller Zeiten. und tolle Webside.<br>
+Habe mich gerade durchgearbeitet. Und beim ChampionsLeague Finale daheim. Super timing .<br>
+Wann sieht man Dich den mal wieder auf dem Fussballplatz?</p>
+<p>LG Thomas aus Jena/Alicante</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-275">
+ 
+ <article id="comment-275" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/c8b877e2028850dceeac89799cd424f4?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/c8b877e2028850dceeac89799cd424f4?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Eamonn Kelly</cite></span>
+            <time datetime="2015-06-08T10:28:03+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-275">08/06/2015 at 10:28</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-275", "275", "respond", "701" )' aria-label="Reply to Eamonn Kelly">Reply</a>      		    		</time></header><p>Congratulations ! Inspiration for us all ..the only question left is – “what’s next ! ”</p>
+<p>Enjoy the break, throw the bike away for a beer & bbq ..</p>
+<p>Eamonn</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-274">
+ 
+ <article id="comment-274" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/a14feb50d6e6b218e89432ffc5fa8e74?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/a14feb50d6e6b218e89432ffc5fa8e74?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Wayne Smith</cite></span>
+            <time datetime="2015-06-08T09:15:27+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-274">08/06/2015 at 09:15</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-274", "274", "respond", "701" )' aria-label="Reply to Wayne Smith">Reply</a>      		    		</time></header><p>well done great effort!!! wayne & silvana</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-273">
+ 
+ <article id="comment-273" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/fd8173812104ef93de5972f7c4f202f9?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/fd8173812104ef93de5972f7c4f202f9?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Michael Müller</cite></span>
+            <time datetime="2015-06-08T06:38:23+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-273">08/06/2015 at 06:38</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-273", "273", "respond", "701" )' aria-label="Reply to Michael Müller">Reply</a>      		    		</time></header><p>Hi Mike,</p>
+<p>auch von uns herzliche Glückwünsche zu der Tour. Hut ab.</p>
+<p>Viele Grüße und bis bald mal.</p>
+<p>Doris und Micha</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-272">
+ 
+ <article id="comment-272" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/40eb7d543a6d635b97a16b0491d62749?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/40eb7d543a6d635b97a16b0491d62749?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>chris zenger</cite></span>
+            <time datetime="2015-06-07T23:39:49+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-272">07/06/2015 at 23:39</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-272", "272", "respond", "701" )' aria-label="Reply to chris zenger">Reply</a>      		    		</time></header><p>Hallo Michael,</p>
+<p>hab heut erst vonb den Eltern erfahren, dass du unterwegs warst. Wir kommen gerade aus Südfrankreich zurück.<br>
+Da schick ich doch auch mal herzliche Grüße. Finde es immer gut, wenn alte Knochen bewegt werden….<br>
+In diesem Sinne, Chris (Zenger)</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-271">
+ 
+ <article id="comment-271" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/2df76da56cad1afb49d1740605e1d8af?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/2df76da56cad1afb49d1740605e1d8af?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Silvina</cite></span>
+            <time datetime="2015-06-07T22:59:38+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-271">07/06/2015 at 22:59</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-271", "271", "respond", "701" )' aria-label="Reply to Silvina">Reply</a>      		    		</time></header><p>Lieber Michael,</p>
+<p>Tolle Leistung! Es freut uns riesig, dass Du es geschafft hast. Genieße die Tage zuhause. Wir in Alicante freuen uns schon auf Dich.</p>
+<p>Herzliche Grüße</p>
+<p>Silvina und Andreas</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-270">
+ 
+ <article id="comment-270" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/b7dd61803371fe2d6101d7c1158d7791?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/b7dd61803371fe2d6101d7c1158d7791?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Pedro</cite></span>
+            <time datetime="2015-06-07T19:48:11+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-270">07/06/2015 at 19:48</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-270", "270", "respond", "701" )' aria-label="Reply to Pedro">Reply</a>      		    		</time></header><p>Enhorabuena MICHAEL!!! Y te pongo con mayúsculas por que lo que has hecho ha sido un gran logro, tu esfuerzo se ve recompensado con una gran inyección de moral para ti en todos los sentidos de la vida, seguro que después de superar este reto cuando te surga cualquier imprevisto sabrás afrontarlo con suficiencia…. Un abrazo.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-269">
+ 
+ <article id="comment-269" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/a147ed0f8ed884682541887f049e3b1b?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/a147ed0f8ed884682541887f049e3b1b?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>loli et jean Wawrzyniak</cite></span>
+            <time datetime="2015-06-07T17:28:01+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-269">07/06/2015 at 17:28</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-269", "269", "respond", "701" )' aria-label="Reply to loli et jean Wawrzyniak">Reply</a>      		    		</time></header><p>B r a v o ……  recuerdos a tus padres besitos</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-268">
+ 
+ <article id="comment-268" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/531815d3b55247dc110b1a62354116d7?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/531815d3b55247dc110b1a62354116d7?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Richard</cite></span>
+            <time datetime="2015-06-07T10:38:52+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-268">07/06/2015 at 10:38</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-268", "268", "respond", "701" )' aria-label="Reply to Richard">Reply</a>      		    		</time></header><p>The new Michael Palin! Well done Michael.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-266">
+ 
+ <article id="comment-266" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/ff3414ba3297d7ad08b8f9aae53a137d?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/ff3414ba3297d7ad08b8f9aae53a137d?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Ruxi</cite></span>
+            <time datetime="2015-06-06T23:21:19+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-266">06/06/2015 at 23:21</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-266", "266", "respond", "701" )' aria-label="Reply to Ruxi">Reply</a>      		    		</time></header><p>Coolio! Rechtzeitig zum Champions Finale. Sehr gut getime-t 🙂 viel Spaß dahoam und wie gesagt, wegen mir darfste gerne auch wieder zurückradeln und berichten.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-265">
+ 
+ <article id="comment-265" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/dc2ed52cebba2af7727f243e961f196f?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/dc2ed52cebba2af7727f243e961f196f?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>antoniatere</cite></span>
+            <time datetime="2015-06-06T22:30:56+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-265">06/06/2015 at 22:30</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-265", "265", "respond", "701" )' aria-label="Reply to antoniatere">Reply</a>      		    		</time></header><p>por fin, que contentos estaran tus padres de estar contigo de nuevo,miguel y yo nos alegramos de que hayas hecho un buen tour y que todo haya salido como tu deseabas. hasta pronto…..</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-264">
+ 
+ <article id="comment-264" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/02693f33c122f6ab4e9e7ac773687909?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/02693f33c122f6ab4e9e7ac773687909?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Aida</cite></span>
+            <time datetime="2015-06-06T22:05:03+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-264">06/06/2015 at 22:05</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-264", "264", "respond", "701" )' aria-label="Reply to Aida">Reply</a>      		    		</time></header><p>Hola, que alegría ver que ya has llegado!!! Ahora a descansar y a disfrutar en familia. Saludos para todos 🙂</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-even depth-1" id="li-comment-263">
+ 
+ <article id="comment-263" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/02693f33c122f6ab4e9e7ac773687909?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/02693f33c122f6ab4e9e7ac773687909?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Josele</cite></span>
+            <time datetime="2015-06-06T21:58:19+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-263">06/06/2015 at 21:58</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-263", "263", "respond", "701" )' aria-label="Reply to Josele">Reply</a>      		    		</time></header><p>Me alegro de que hayas llegado bien. Espero que el viaje te haya enseñado mucho, me hubiese gustado acompañarte en un viaje tan ciclista como este.  Ahora ya te esperamos en casa cuídate y un abrazo enorme</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-262">
+ 
+ <article id="comment-262" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/725cb5af2623990c434f1648f07528f6?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/725cb5af2623990c434f1648f07528f6?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>María Ambit</cite></span>
+            <time datetime="2015-06-06T21:57:28+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-262">06/06/2015 at 21:57</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-262", "262", "respond", "701" )' aria-label="Reply to María Ambit">Reply</a>      		    		</time></header><p>Hola cariño!</p>
+<p>Las niñas y yo estamos muy contentas que hayas llegado sano y salvo a Herzogenaurach y que tu travesia haya sido una gran aventura y bonita experiencia.</p>
+<p>Aquí en casa estamos deseando verte y abrazarte, así que vuelve pronto a casa! 😉</p>
+<p>Tu familia que te quiere y te echa mucho de menos,<br>
+Sofía, Sara y María</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article><ul class="children"><li class="comment byuser comment-author-barbapapa bypostauthor odd alt depth-2" id="li-comment-267">
+ 
+ <article id="comment-267" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/725cb5af2623990c434f1648f07528f6?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/725cb5af2623990c434f1648f07528f6?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Michael</cite></span>
+            <time datetime="2015-06-07T01:11:50+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-267">07/06/2015 at 01:11</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-267", "267", "respond", "701" )' aria-label="Reply to Michael">Reply</a>      		    		</time></header><p>Hola chicas, volveré pronto!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+</ul></li>
+   <li class="comment even thread-even depth-1" id="li-comment-261">
+ 
+ <article id="comment-261" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/58092d02e7f7c6e65f20f7e18986d399?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/58092d02e7f7c6e65f20f7e18986d399?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Astrid</cite></span>
+            <time datetime="2015-06-06T21:36:10+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-261">06/06/2015 at 21:36</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-261", "261", "respond", "701" )' aria-label="Reply to Astrid">Reply</a>      		    		</time></header><p>Toll hast du die lange Tour gemeistert. Hut ab. Nun warten wir nur auf deine Rückkehr und mit dir wieder Salsa zu tanzen.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-260">
+ 
+ <article id="comment-260" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/85918a6a483a1dc71c8b0075ff9e5166?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/85918a6a483a1dc71c8b0075ff9e5166?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Christina</cite></span>
+            <time datetime="2015-06-06T19:58:06+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-260">06/06/2015 at 19:58</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-260", "260", "respond", "701" )' aria-label="Reply to Christina">Reply</a>      		    		</time></header><p>Hut ab vor so einer Leistung! Hast Du toll gemacht und interessant berichtet, Glückwunsch.<br>
+Herzliche Grüße<br>
+Christina</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-259">
+ 
+ <article id="comment-259" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/f8e4d08a42a5ca153ff5008c106e8114?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/f8e4d08a42a5ca153ff5008c106e8114?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>christoph</cite></span>
+            <time datetime="2015-06-06T19:55:46+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-259">06/06/2015 at 19:55</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-259", "259", "respond", "701" )' aria-label="Reply to christoph">Reply</a>      		    		</time></header><p>unglaublich. du verdienst dir jetzt mehr als EIN bier.  eine spitzen leistung!  bis bald</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-258">
+ 
+ <article id="comment-258" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/eb36d400d020e526c57b2b5cb0cc02ba?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/eb36d400d020e526c57b2b5cb0cc02ba?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Raymond</cite></span>
+            <time datetime="2015-06-06T19:45:37+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-258">06/06/2015 at 19:45</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-258", "258", "respond", "701" )' aria-label="Reply to Raymond">Reply</a>      		    		</time></header><p>Enhorabuena, bien hecho! Justo para ver la final en el sofá de toda la vida!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-257">
+ 
+ <article id="comment-257" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/d2d5976e235972bb4d8c68d10e7b161b?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/d2d5976e235972bb4d8c68d10e7b161b?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>reinhard</cite></span>
+            <time datetime="2015-06-06T19:41:07+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-257">06/06/2015 at 19:41</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-257", "257", "respond", "701" )' aria-label="Reply to reinhard">Reply</a>      		    		</time></header><p>Herzlichen Glückwunsch . Super Leistung .</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-256">
+ 
+ <article id="comment-256" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite><a href="http://kattegattleden.se/" rel="external nofollow" class="url">Daniel</a></cite></span>
+            <time datetime="2015-06-06T19:27:35+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-256">06/06/2015 at 19:27</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-256", "256", "respond", "701" )' aria-label="Reply to Daniel">Reply</a>      		    		</time></header><p>Glückwunsch!<br>
+Hast du sehr gut geschafft. Nun kannst du getrost am Altstadtfest ein bischen nachtanken.<br>
+Viel Spass.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-255">
+ 
+ <article id="comment-255" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/ec4a97beb45cef289b2f2cea62f2b96e?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/ec4a97beb45cef289b2f2cea62f2b96e?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Christof Dickas</cite></span>
+            <time datetime="2015-06-06T18:52:17+00:00" class="comment-date"><a href="http://michaeldickas.com/coming-home/#comment-255">06/06/2015 at 18:52</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/coming-home/" onclick='return addComment.moveForm( "comment-255", "255", "respond", "701" )' aria-label="Reply to Christof Dickas">Reply</a>      		    		</time></header><p>Lieber  Michael,<br>
+es ist wirklich ein großes Glück, daß du nicht einmal ein Loch im Reifen oder ein enen<br>
+unfreiwilligen Abstieg erlebt hast. Und es ist schön daß dein Abenteuer so ein gutes Ende nahm.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+	</ul></section><div class="clear"></div>
+
+<section class="comment-form"><div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/coming-home/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://michaeldickas.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Comment"><input type="hidden" name="comment_post_ID" value="701" id="comment_post_ID"><input type="hidden" name="comment_parent" id="comment_parent" value="0"></p>			</form>
+			</div>
+	    
+    <div class="clear"></div>
+
+</section></article><div style="clear:both"></div>
+        
+    </div>
+
+	
+	<div class="clear"></div>
+
+           
+    </div>
+</div>
+
+    <section id="bottom_area"><footer id="footer"><div class="container">
+            
+                <div class="row">
+                     
+                    <div class="span12 copyright">
+                    
+                        <p>
+                                                          Copyright Michaels Bike Tour 2020 
+                             
+                            | Theme by <a href="http://www.themeinprogress.com/" target="_blank">Theme in Progress</a> |
+                            <a href="http://wordpress.org/" title="A Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+                        
+                        </p>
+                    
+                    </div>
+                        
+                </div>
+        
+            </div>
+        
+        </footer></section></div>
+
+<div id="back-to-top">
+<a href="#" style=""><i class="icon-chevron-up"></i></a> 
+</div>
+    
+<div id="map" class="geolocation-map" style="width:350px;height:150px;"></div>    <script>jQuery(document).ready(function($) { $('#flags a, a.single-language, .tool-items a').each(function() { $(this).attr('data-lang', $(this).attr('title')); }); $("a.flag").on("click",function(){function l(){doGoogleLanguageTranslator(default_lang+"|"+default_lang); }function n(){doGoogleLanguageTranslator(default_lang+"|"+lang_prefix); } lang_text=$(this).attr('data-lang'),default_lang="en",lang_prefix=$(this).attr("class").split(" ")[2],$(".tool-container").hide(),lang_prefix==default_lang?l():n()}),0==$("body > #google_language_translator").length&&$("#glt-footer").html("<div id='google_language_translator'>")});</script><div id="glt-translate-trigger"><span class="notranslate">Translate »</span></div><div id="glt-toolbar"></div><div id="flags" style="display:none"><ul id="sortable" class="ui-sortable"><li id="English"><a title="English" class="notranslate flag en English"></a></li><li id="German"><a title="German" class="notranslate flag de German"></a></li><li id="Spanish"><a title="Spanish" class="notranslate flag es Spanish"></a></li></ul></div><div id="glt-footer"></div><script type="text/javascript">function GoogleLanguageTranslatorInit() { new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_language_translator');}</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/core.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/widget.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/tabs.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.easing.1.3.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.prettyPhoto.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.scrollTo.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.theme.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.tinynav.js"></script></body></html>
