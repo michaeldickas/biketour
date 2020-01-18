@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="http://michaeldickas.com/wp-content/themes/nova-lite/style.css" media="screen"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes"><title>Travel – Page 2 – Michaels Bike Tour</title><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//s.w.org"><link rel="stylesheet" id="glt-toolbar-styles-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/toolbar.css" type="text/css" media="all"><link rel="stylesheet" id="google-language-translator-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/style.css" type="text/css" media="all"><link rel="stylesheet" id="menu-image-css" href="http://michaeldickas.com/wp-content/plugins/menu-image/menu-image.css" type="text/css" media="all"><link rel="stylesheet" id="bootstrap.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/bootstrap.min.css" type="text/css" media="all"><link rel="stylesheet" id="flexslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/flexslider.css" type="text/css" media="all"><link rel="stylesheet" id="font-awesome.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/font-awesome.min.css" type="text/css" media="all"><link rel="stylesheet" id="nivoslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/nivoslider.css" type="text/css" media="all"><link rel="stylesheet" id="prettyPhoto-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/prettyPhoto.css" type="text/css" media="all"><link rel="stylesheet" id="novalite-google-fonts-css" href="//fonts.googleapis.com/css?family=Montez%7COxygen%7CYanone+Kaffeesatz&subset=latin%2Clatin-ext&ver=4.7.16" type="text/css" media="all"><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery-migrate.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-flags.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-toolbar.js"></script><script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><script type="text/javascript">
+		var $j = jQuery.noConflict();
+		$j(function(){
+			var center = new google.maps.LatLng(0.0, 0.0);
+			var myOptions = {
+		      zoom: 9,
+		      center: center,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		    var image = "http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin.png";
+		    var shadow = new google.maps.MarkerImage("http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin_shadow.png",
+		    	new google.maps.Size(39, 23),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(12, 25));
+		    var marker = new google.maps.Marker({
+					position: center, 
+					map: map, 
+					title:"Post Location",
+					icon: image,
+					shadow: shadow});
+			
+			var allowDisappear = true;
+			var cancelDisappear = false;
+		    
+			$j(".geolocation-link").mouseover(function(){
+				$j("#map").stop(true, true);
+				var lat = $j(this).attr("name").split(",")[0];
+				var lng = $j(this).attr("name").split(",")[1];
+				var latlng = new google.maps.LatLng(lat, lng);
+				placeMarker(latlng);
+				
+				var offset = $j(this).offset();
+				$j("#map").fadeTo(250, 1);
+				$j("#map").css("z-index", "99");
+				$j("#map").css("visibility", "visible");
+				$j("#map").css("top", offset.top + 20);
+				$j("#map").css("left", offset.left);
+				
+				allowDisappear = false;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j(".geolocation-link").mouseover(function(){
+			});
+			
+			$j(".geolocation-link").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				setTimeout(function() {
+					if((allowDisappear) && (!cancelDisappear))
+					{
+						$j("#map").fadeTo(500, 0, function() {
+							$j("#map").css("z-index", "-1");
+							allowDisappear = true;
+							cancelDisappear = false;
+						});
+					}
+			    },800);
+			});
+			
+			$j("#map").mouseover(function(){
+				allowDisappear = false;
+				cancelDisappear = true;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j("#map").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				$j(".geolocation-link").mouseout();
+			});
+			
+			function placeMarker(location) {
+				map.setZoom(9);
+				marker.setPosition(location);
+				map.setCenter(location);
+			}
+			
+			google.maps.event.addListener(map, "click", function() {
+				window.location = "http://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
+			});
+		});
+	</script><link type="text/css" rel="stylesheet" href="http://michaeldickas.com/wp-content/plugins/geolocation-plus/style.css"><style type="text/css">p.hello { font-size:12px; color:darkgray; }#google_language_translator, #flags { text-align:left; }#google_language_translator, #language { clear:both; width:160px; text-align:right; }#language { float:right; }#flags { text-align:right; width:165px; float:right; clear:right; }#flags ul { float:right !important; }p.hello { text-align:right; float:right; clear:both; }.glt-clear { height:0px; clear:both; margin:0px; padding:0px; }#flags { width:165px; }#flags a { display:inline-block; margin-left:2px; }.goog-tooltip {display: none !important;}.goog-tooltip:hover {display: none !important;}.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}#google_language_translator { width:auto !important; }.goog-te-banner-frame{visibility:hidden !important;}body { top:0px !important;}</style><style type="text/css">
+
+
+</style><style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><style>.simplemap img{max-width:none !important;padding:0 !important;margin:0 !important;}.staticmap,.staticmap img{max-width:100% !important;height:auto !important;}.simplemap .simplemap-content{display:none;}</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #0a0000; background-image: url("http://michaeldickas.com/wp-content/uploads/2015/06/DSC04638r.jpg"); background-position: left top; background-size: auto; background-repeat: repeat-y; background-attachment: scroll; }
+</style><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62252925-1', 'auto');
+  ga('send', 'pageview');
+</script></head><body class="archive paged category category-travel category-1 custom-background paged-2 category-paged-2 custombody">
+
+<div id="wrapper">
+    
+    <header id="header"><div class="container">
+        
+            <div class="row">
+                
+                <div class="span3">
+                   
+                    <div id="logo">
+                            
+                        <a href="http://michaeldickas.com/" title="Michaels Bike Tour">
+                                
+                            Michaels Bike Tour                                    
+                        </a>
+                                
+                    </div>
+                    
+                </div>
+    
+                <div class="span9">
+                  
+                    <nav id="mainmenu"><ul id="menu-main-menu" class="menu"><li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-35"><a href="http://michaeldickas.com/" class="menu-image-title-before"><span class="menu-image-title">Home</span></a></li>
+<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="http://michaeldickas.com/about-me/" class="menu-image-title-after"><span class="menu-image-title">About me</span></a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="http://michaeldickas.com/route-map/" class="menu-image-title-after"><span class="menu-image-title">Route Map</span></a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="http://michaeldickas.com/thanks-to/" class="menu-image-title-after"><span class="menu-image-title">Thanks to</span></a></li>
+</ul></nav></div>
+                
+            </div>
+            
+        </div>
+    
+    </header><section id="subheader"><div class="container">
+    	<div class="row">
+            <div class="span12">
+				                
+                    <p>Category : Travel </p>
+
+				                
+            </div>        
+		</div>
+    </div>
+</section><div class="container content">
+	
+    <div class="row">
+
+        <div class="span12 full"> 
+   		
+            <div class="row">
+            
+                        
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC03650-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/in-good-company/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/in-good-company/"> In good company </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 27/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation558" name="47.2401055,6.025596199999995" onclick="return false;">Posted from Besançon, Franche-Comté, France.</a></p>
+<p>I made two great discoveries today.</p>
+<p>On the first kilometers this morning I met Markus on my way. He is a german guy who is on a bike tour from Nantes to Freiburg. We went together the whole way to Besançon.… <a href="http://michaeldickas.com/in-good-company/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC03265-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/doucement/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/doucement/"> Doucement </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 26/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation539" name="47.0646555,5.495376899999997" onclick="return false;">Posted from Dole, Franche-Comté, France.</a></p>
+<p>I am getting closer to my homeland. The landscape looks already quite familiar, I see more and more german tourists and the weather gets worse.</p>
+<p>It was raining during the night and the temperature has dropped considerably today to only 10ºC.… <a href="http://michaeldickas.com/doucement/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC03047-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/good-energy/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/good-energy/"> Good energy </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 25/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation522" name="46.7536508,5.241526300000032" onclick="return false;">Posted from Saint-Germain-du-Bois, Burgundy, France.</a></p>
+<p>in a dead man´s place. Today is monday and a bank holiday, everything is closed.</p>
+<p>It was a very good cycling day. I had good energy and good weather in the morning. There was almost no wind today, what a blessing!… <a href="http://michaeldickas.com/good-energy/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC02890-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/like-god-in-france/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/like-god-in-france/"> Like god in France </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 24/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation502" name="46.3032187,4.826997699999993" onclick="return false;">Posted from Mâcon, Burgundy, France.</a></p>
+<p>I was going north today following and crossing several times the river Saône. It was a pleasant day on small roads without traffic and good temperature. The wind was notably less than in previous days, although still comes from the wrong direction.… <a href="http://michaeldickas.com/like-god-in-france/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC02691-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/small-moments/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/small-moments/"> Magic moments </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 23/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation495" name="45.7502305,4.829905199999985" onclick="return false;">Posted from Lyon, Rhone-Alpes, France.</a></p>
+<p>I spent a quiet and very philosophical day in Lyon where I received a lot of food for thought.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p>Todays route: 0 km… <a href="http://michaeldickas.com/small-moments/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC02663-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/confluences/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/confluences/"> Confluences </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 22/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation481" name="45.7502305,4.829905199999985" onclick="return false;">Posted from Lyon, Rhone-Alpes, France.</a></p>
+<p>Right after the breakfast I had a traditional cambodian massage. I had seen the practice right around the corner of the hotel when I came home last night. The lady had warned me that I would scream and stood with her full body on my legs and on my back.… <a href="http://michaeldickas.com/confluences/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC02409-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/head-winds-again/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/head-winds-again/"> Head winds again </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 21/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation463" name="45.7502305,4.829905199999985" onclick="return false;">Posted from Lyon, Rhone-Alpes, France.</a></p>
+<p>Today I fought for four hours an heroic battle against the Mistral, the twin brother of the Tramontana. I cannot say which of the two winds is worse, but if you are on the bike both of them are bad company.… <a href="http://michaeldickas.com/head-winds-again/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC02165-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/going-gothic/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/going-gothic/"> Going gothic </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 20/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation448" name="43.94937729999999,4.809449800000038" onclick="return false;">Posted from Avignon, Provence-Alpes-Côte d'Azur, France.</a></p>
+<p>I had a relaxed day of rest in Avignon.</p>
+<p>There is plenty to see and visit in Avignon. I spent the whole morning in the Popes Palace, the biggest gothic palace in the world. Later I went to walk over the famous bridge of Avignon.… <a href="http://michaeldickas.com/going-gothic/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC01752-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/on-the-banks-of-the-rhone/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/on-the-banks-of-the-rhone/"> On the banks of the Rhone </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 19/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation426" name="43.94937729999999,4.809449800000038" onclick="return false;">Posted from Avignon, Provence-Alpes-Côte d'Azur, France.</a></p>
+<p>Today I reached the river Rhone in Avignon.</p>
+<p>The day began with an unforeseen obstacle. The weather has changed again and just when I had moved off  it started to rain. I turned back to the hotel and had some more coffees in the lobby until it stopped.… <a href="http://michaeldickas.com/on-the-banks-of-the-rhone/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span12">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="http://michaeldickas.com/wp-content/uploads/2015/05/DSC01508-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="http://michaeldickas.com/easy-going/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="http://michaeldickas.com/easy-going/"> Easy going </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 18/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation409" name="43.618037,3.874946300000033" onclick="return false;">Posted from Montpellier, Languedoc-Roussillon, France.</a></p>
+<p>What a great cycling day!</p>
+<p>Overnight the weather has changed for good. There was almost no wind today, and if, it was coming from southern directions. The temperature was also good and the route was very flat.… <a href="http://michaeldickas.com/easy-going/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                </div>
+    		
+			<div class="clear"></div>
+
+<div class="wp-pagenavi"><a class="prev page-numbers" href="http://michaeldickas.com/category/travel/page/1/">«</a>
+<a class="page-numbers" href="http://michaeldickas.com/category/travel/page/1/">1</a>
+<span class="page-numbers current">2</span>
+<a class="page-numbers" href="http://michaeldickas.com/category/travel/page/3/">3</a>
+<a class="page-numbers" href="http://michaeldickas.com/category/travel/page/4/">4</a>
+<a class="next page-numbers" href="http://michaeldickas.com/category/travel/page/3/">»</a></div>        </div>
+        
+		           
+    </div>
+</div>
+
+    <section id="bottom_area"><footer id="footer"><div class="container">
+            
+                <div class="row">
+                     
+                    <div class="span12 copyright">
+                    
+                        <p>
+                                                          Copyright Michaels Bike Tour 2020 
+                             
+                            | Theme by <a href="http://www.themeinprogress.com/" target="_blank">Theme in Progress</a> |
+                            <a href="http://wordpress.org/" title="A Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+                        
+                        </p>
+                    
+                    </div>
+                        
+                </div>
+        
+            </div>
+        
+        </footer></section></div>
+
+<div id="back-to-top">
+<a href="#" style=""><i class="icon-chevron-up"></i></a> 
+</div>
+    
+<div id="map" class="geolocation-map" style="width:350px;height:150px;"></div>    <script>jQuery(document).ready(function($) { $('#flags a, a.single-language, .tool-items a').each(function() { $(this).attr('data-lang', $(this).attr('title')); }); $("a.flag").on("click",function(){function l(){doGoogleLanguageTranslator(default_lang+"|"+default_lang); }function n(){doGoogleLanguageTranslator(default_lang+"|"+lang_prefix); } lang_text=$(this).attr('data-lang'),default_lang="en",lang_prefix=$(this).attr("class").split(" ")[2],$(".tool-container").hide(),lang_prefix==default_lang?l():n()}),0==$("body > #google_language_translator").length&&$("#glt-footer").html("<div id='google_language_translator'>")});</script><div id="glt-translate-trigger"><span class="notranslate">Translate »</span></div><div id="glt-toolbar"></div><div id="flags" style="display:none"><ul id="sortable" class="ui-sortable"><li id="English"><a title="English" class="notranslate flag en English"></a></li><li id="German"><a title="German" class="notranslate flag de German"></a></li><li id="Spanish"><a title="Spanish" class="notranslate flag es Spanish"></a></li></ul></div><div id="glt-footer"></div><script type="text/javascript">function GoogleLanguageTranslatorInit() { new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_language_translator');}</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/core.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/widget.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/tabs.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.easing.1.3.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.prettyPhoto.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.scrollTo.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.theme.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.tinynav.js"></script></body></html>
