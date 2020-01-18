@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="https://michaeldickas.github.io/biketour/wp-content/plugins/google-sitemap-generator/sitemap.xsl"?><!-- sitemap-generator-url="http://www.arnebrachhold.de" sitemap-generator-version="4.0.8" -->
-<!-- generated-on="18/01/2020 00:53" -->
+<!-- generated-on="18/01/2020 01:13" -->
 <sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	<sitemap>
 		<loc>https://michaeldickas.github.io/biketour/sitemap-misc.xml</loc>
 		<lastmod>2015-06-06T16:42:30+00:00</lastmod>
@@ -16,4 +16,4 @@
 		<loc>https://michaeldickas.github.io/biketour/sitemap-pt-page-2015-04.xml</loc>
 		<lastmod>2015-05-03T19:38:56+00:00</lastmod>
 	</sitemap>
-</sitemapindex><!-- Request ID: bd255b439599cf3a098c8879d4bb0b74; Queries for sitemap: 6; Total queries: 17; Seconds: 0; Memory for sitemap: 0MB; Total memory: 2MB -->
+</sitemapindex><!-- Request ID: 628c53dc1de846be742ffb92a7f554a1; Queries for sitemap: 6; Total queries: 17; Seconds: 0; Memory for sitemap: 0MB; Total memory: 2MB -->
