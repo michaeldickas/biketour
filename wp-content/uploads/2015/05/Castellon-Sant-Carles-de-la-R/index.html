@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/style.css" media="screen"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes"><title>Michaels Bike Tour – My bike trip home</title><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//s.w.org"><link rel="stylesheet" id="glt-toolbar-styles-css" href="https://michaeldickas.github.io/biketour/wp-content/plugins/google-language-translator/css/toolbar.css" type="text/css" media="all"><link rel="stylesheet" id="google-language-translator-css" href="https://michaeldickas.github.io/biketour/wp-content/plugins/google-language-translator/css/style.css" type="text/css" media="all"><link rel="stylesheet" id="menu-image-css" href="https://michaeldickas.github.io/biketour/wp-content/plugins/menu-image/menu-image.css" type="text/css" media="all"><link rel="stylesheet" id="bootstrap.min-css" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/css/bootstrap.min.css" type="text/css" media="all"><link rel="stylesheet" id="flexslider-css" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/css/flexslider.css" type="text/css" media="all"><link rel="stylesheet" id="font-awesome.min-css" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/css/font-awesome.min.css" type="text/css" media="all"><link rel="stylesheet" id="nivoslider-css" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/css/nivoslider.css" type="text/css" media="all"><link rel="stylesheet" id="prettyPhoto-css" href="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/css/prettyPhoto.css" type="text/css" media="all"><link rel="stylesheet" id="novalite-google-fonts-css" href="//fonts.googleapis.com/css?family=Montez%7COxygen%7CYanone+Kaffeesatz&subset=latin%2Clatin-ext&ver=4.7.16" type="text/css" media="all"><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-includes/js/jquery/jquery.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-includes/js/jquery/jquery-migrate.min.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/plugins/google-language-translator/js/load-flags.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/plugins/google-language-translator/js/load-toolbar.js"></script><script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><script type="text/javascript">
+		var $j = jQuery.noConflict();
+		$j(function(){
+			var center = new google.maps.LatLng(0.0, 0.0);
+			var myOptions = {
+		      zoom: 9,
+		      center: center,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		    var image = "https://michaeldickas.github.io/biketour/wp-content/plugins/geolocation-plus/img/wp_pin.png";
+		    var shadow = new google.maps.MarkerImage("https://michaeldickas.github.io/biketour/wp-content/plugins/geolocation-plus/img/wp_pin_shadow.png",
+		    	new google.maps.Size(39, 23),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(12, 25));
+		    var marker = new google.maps.Marker({
+					position: center, 
+					map: map, 
+					title:"Post Location",
+					icon: image,
+					shadow: shadow});
+			
+			var allowDisappear = true;
+			var cancelDisappear = false;
+		    
+			$j(".geolocation-link").mouseover(function(){
+				$j("#map").stop(true, true);
+				var lat = $j(this).attr("name").split(",")[0];
+				var lng = $j(this).attr("name").split(",")[1];
+				var latlng = new google.maps.LatLng(lat, lng);
+				placeMarker(latlng);
+				
+				var offset = $j(this).offset();
+				$j("#map").fadeTo(250, 1);
+				$j("#map").css("z-index", "99");
+				$j("#map").css("visibility", "visible");
+				$j("#map").css("top", offset.top + 20);
+				$j("#map").css("left", offset.left);
+				
+				allowDisappear = false;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j(".geolocation-link").mouseover(function(){
+			});
+			
+			$j(".geolocation-link").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				setTimeout(function() {
+					if((allowDisappear) && (!cancelDisappear))
+					{
+						$j("#map").fadeTo(500, 0, function() {
+							$j("#map").css("z-index", "-1");
+							allowDisappear = true;
+							cancelDisappear = false;
+						});
+					}
+			    },800);
+			});
+			
+			$j("#map").mouseover(function(){
+				allowDisappear = false;
+				cancelDisappear = true;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j("#map").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				$j(".geolocation-link").mouseout();
+			});
+			
+			function placeMarker(location) {
+				map.setZoom(9);
+				marker.setPosition(location);
+				map.setCenter(location);
+			}
+			
+			google.maps.event.addListener(map, "click", function() {
+				window.location = "http://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
+			});
+		});
+	</script><link type="text/css" rel="stylesheet" href="https://michaeldickas.github.io/biketour/wp-content/plugins/geolocation-plus/style.css"><style type="text/css">p.hello { font-size:12px; color:darkgray; }#google_language_translator, #flags { text-align:left; }#google_language_translator, #language { clear:both; width:160px; text-align:right; }#language { float:right; }#flags { text-align:right; width:165px; float:right; clear:right; }#flags ul { float:right !important; }p.hello { text-align:right; float:right; clear:both; }.glt-clear { height:0px; clear:both; margin:0px; padding:0px; }#flags { width:165px; }#flags a { display:inline-block; margin-left:2px; }.goog-tooltip {display: none !important;}.goog-tooltip:hover {display: none !important;}.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}#google_language_translator { width:auto !important; }.goog-te-banner-frame{visibility:hidden !important;}body { top:0px !important;}</style><style type="text/css">
+
+
+</style><style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><style>.simplemap img{max-width:none !important;padding:0 !important;margin:0 !important;}.staticmap,.staticmap img{max-width:100% !important;height:auto !important;}.simplemap .simplemap-content{display:none;}</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #0a0000; background-image: url("https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC04638r.jpg"); background-position: left top; background-size: auto; background-repeat: repeat-y; background-attachment: scroll; }
+</style><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62252925-1', 'auto');
+  ga('send', 'pageview');
+</script></head><body class="home blog custom-background custombody">
+
+<div id="wrapper">
+    
+    <header id="header"><div class="container">
+        
+            <div class="row">
+                
+                <div class="span3">
+                   
+                    <div id="logo">
+                            
+                        <a href="https://michaeldickas.github.io/biketour/" title="Michaels Bike Tour">
+                                
+                            Michaels Bike Tour                                    
+                        </a>
+                                
+                    </div>
+                    
+                </div>
+    
+                <div class="span9">
+                  
+                    <nav id="mainmenu"><ul id="menu-main-menu" class="menu"><li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-35"><a href="https://michaeldickas.github.io/biketour/" class="menu-image-title-before"><span class="menu-image-title">Home</span></a></li>
+<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="https://michaeldickas.github.io/biketour/about-me/" class="menu-image-title-after"><span class="menu-image-title">About me</span></a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="https://michaeldickas.github.io/biketour/route-map/" class="menu-image-title-after"><span class="menu-image-title">Route Map</span></a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="https://michaeldickas.github.io/biketour/thanks-to/" class="menu-image-title-after"><span class="menu-image-title">Thanks to</span></a></li>
+</ul></nav></div>
+                
+            </div>
+            
+        </div>
+    
+    </header><div class="container content">
+	
+    <div class="row">
+
+        <div class="span8 right-sidebar"> 
+
+            <div class="row">
+            
+                        
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC05747r-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/coming-home/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/coming-home/"> Coming home </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 06/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation701" name="49.56541430000001,10.871409999999969" onclick="return false;">Posted from Herzogenaurach, Bavaria, Germany.</a></p>
+<p>I am at home.</p>
+<p>I got a great welcome by my parents, it is a great feeling to have achieved it and at the same time the end of a great adventure.</p>
+<p>Thank you so much for supporting me by dedicating your time to read this blog.… <a href="https://michaeldickas.github.io/biketour/coming-home/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC05512-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/on-the-home-stretch/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/on-the-home-stretch/"> On the home stretch </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 05/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation671" name="49.1093736,10.767671699999937" onclick="return false;">Posted from Gunzenhausen, Bavaria, Germany.</a></p>
+<p>The hottest day of the year in Germany, I was grilling on the bike. I have left the Danube valley and the terrain has turned quite hilly again. But so closed to the end of the tour the happiness hormones are at sky high level and nothing can stop me.… <a href="https://michaeldickas.github.io/biketour/on-the-home-stretch/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC05281-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/back-in-bavaria/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/back-in-bavaria/"> Back in Bavaria </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 04/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation658" name="48.7194306,10.777732799999967" onclick="return false;">Posted from Donauworth, Bavaria, Germany.</a></p>
+<p>It was very hot today, but I am back in the land of the beer. A cool Weissbier is the best remedy for a thirsty throat!  Luckily, there were many bars along the route to fill up the tank.… <a href="https://michaeldickas.github.io/biketour/back-in-bavaria/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC05072-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/recovering-in-ulm/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/recovering-in-ulm/"> Recovering in Ulm </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 03/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation649" name="48.39646,10.001800000000003" onclick="return false;">Posted from Neu-Ulm, Bavaria, Germany.</a></p>
+<p>I feel tired today and spent a quiet day in Ulm to prepare the final stages.</p>
+<p>I climbed the tower of the Ulmer Münster, the highest church tower in the world. From above I could see the route from where I came yesterday and what lies ahead tomorrow.… <a href="https://michaeldickas.github.io/biketour/recovering-in-ulm/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC04943-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/riding-the-wave/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/riding-the-wave/"> Riding the wave </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 02/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation629" name="48.3964697,10.00133870000002" onclick="return false;">Posted from Neu-Ulm, Bavaria, Germany.</a></p>
+<p>A very long stage, because I had good tail winds and a steady downhill again. I am riding on a wave of good energy coming from SW.</p>
+<p>The best came at the end of the day.… <a href="https://michaeldickas.github.io/biketour/riding-the-wave/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/06/DSC04742-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/along-the-danube/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/along-the-danube/"> Along the Danube </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 01/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation619" name="48.0914875,9.210574199999996" onclick="return false;">Posted from Sigmaringen, Baden-Württemberg, Germany.</a></p>
+<p>Today I went on the well known bike path “Donau Radwanderweg” along the river Danube. It is a very scenic drive with many cafes and restaurants on the route. With all these cafes I have changed my habit of the first coffee break.… <a href="https://michaeldickas.github.io/biketour/along-the-danube/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/05/DSC04411-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/ups-and-downs/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/ups-and-downs/"> Ups and downs </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 31/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation606" name="47.9523076,8.493743900000027" onclick="return false;">Posted from Donaueschingen, Baden-Württemberg, Germany.</a></p>
+<p>The route went through idyllic surroundings. Germany and especially the Black Forest are beautiful now at the beginning of the summer.</p>
+<p>There were many ups and downs today.  I had to make a much longer distance than I thought because I went down the wrong valley and had to go back.… <a href="https://michaeldickas.github.io/biketour/ups-and-downs/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/05/DSC04181-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/595/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/595/"> Black Forest relax </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 30/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation595" name="47.9930396,7.852835199999959" onclick="return false;">Posted from Freiburg, Baden-Württemberg, Germany.</a></p>
+<p>This morning we cycled slowly the short distance from the hotel to Freiburg through the amazing surroundings of the Black Forest.</p>
+<p>The rest of the day was very relaxed. Markus gave me a guided tour through the very interesting city of Freiburg.… <a href="https://michaeldickas.github.io/biketour/595/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/05/DSC04083-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/back-in-good-old-germany/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/back-in-good-old-germany/"> Back in good old Germany </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 29/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation582" name="47.87653,7.735019999999963" onclick="return false;">Posted from Staufen, Baden-Württemberg, Germany.</a></p>
+<p>Today I crossed the river Rhine and entered in Germany.</p>
+<p>It was the best cycling day on my bike tour. The whole day a strong tailwind was pushing from behind. There were nice little bars and restaurants along the way to make a rest.… <a href="https://michaeldickas.github.io/biketour/back-in-good-old-germany/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                
+                    <div class="pin-article span8">
+                
+                        		
+		<div class="pin-container">
+			<div class="overlay-image blog-thumb">
+				
+			<img src="https://michaeldickas.github.io/biketour/wp-content/uploads/2015/05/DSC03888-1170x429.jpg" class="attachment-blog wp-post-image" alt="post image" title="post image"><a href="https://michaeldickas.github.io/biketour/birthday-cycling/" class="overlay link"></a>
+				
+			</div>
+		</div>
+			
+	
+<article class="article"><h3 class="title"> <a href="https://michaeldickas.github.io/biketour/birthday-cycling/"> Birthday cycling </a> </h3>
+				
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 28/05/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="https://michaeldickas.github.io/biketour/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation570" name="47.5080466,6.799015300000065" onclick="return false;">Posted from Montbéliard, Franche-Comté, France.</a></p>
+<p>It was great cycling today.</p>
+<p>My new companion Markus and I had beautiful surroundings, sunny weather, perfect bike paths along the river and no wind. We advanced very easily.</p>
+<p>This was a perfect set up for Markus´ birthday which we celebrated in an improvised little party tonight in Montbéliard.… <a href="https://michaeldickas.github.io/biketour/birthday-cycling/" class="read-more">Read the rest</a></p>
+</article><div style="clear:both"></div>
+                        
+                    </div>
+                    
+                                </div>
+			<div class="clear"></div>
+
+<div class="wp-pagenavi"><span class="page-numbers current">1</span>
+<a class="page-numbers" href="https://michaeldickas.github.io/biketour/page/2/">2</a>
+<a class="page-numbers" href="https://michaeldickas.github.io/biketour/page/3/">3</a>
+<a class="page-numbers" href="https://michaeldickas.github.io/biketour/page/4/">4</a>
+<a class="next page-numbers" href="https://michaeldickas.github.io/biketour/page/2/">»</a></div>        </div>
+        
+		    
+                <section id="sidebar" class="span4"><div class="row">
+						<div class="pin-article span4"><div class="article"><h3 class="title">Translate:</h3><div id="flags" class="size16"><ul id="sortable" class="ui-sortable" style="float:left"><li id="English"><a title="English" class="notranslate flag en English"></a></li><li id="German"><a title="German" class="notranslate flag de German"></a></li><li id="Spanish"><a title="Spanish" class="notranslate flag es Spanish"></a></li></ul></div><div id="google_language_translator"></div></div></div><div class="pin-article span4"><div class="article"><h3 class="title">Where I am now </h3>			<div class="execphpwidget"><div class="simplemap"><div class="simplemap-content" data-breakpoint="480" data-lat="49.56541430000001" data-lng="10.871409999999969" data-zoom="16" data-addr="" data-infowindow="close" data-map-type-control="false" data-map-type-id="ROADMAP" style="width:100%;height:200px;"></div></div></div>
+		</div></div>		<div class="pin-article span4"><div class="article">		<h3 class="title">Posts</h3>		<ul><li>
+				<a href="https://michaeldickas.github.io/biketour/coming-home/">Coming home</a>
+							<span class="post-date">06/06/2015</span>
+						</li>
+					<li>
+				<a href="https://michaeldickas.github.io/biketour/on-the-home-stretch/">On the home stretch</a>
+							<span class="post-date">05/06/2015</span>
+						</li>
+					<li>
+				<a href="https://michaeldickas.github.io/biketour/back-in-bavaria/">Back in Bavaria</a>
+							<span class="post-date">04/06/2015</span>
+						</li>
+					<li>
+				<a href="https://michaeldickas.github.io/biketour/recovering-in-ulm/">Recovering in Ulm</a>
+							<span class="post-date">03/06/2015</span>
+						</li>
+					<li>
+				<a href="https://michaeldickas.github.io/biketour/riding-the-wave/">Riding the wave</a>
+							<span class="post-date">02/06/2015</span>
+						</li>
+				</ul></div></div>		<div class="pin-article span4"><div class="article"><h3 class="title">Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Michael</span> on <a href="https://michaeldickas.github.io/biketour/coming-home/#comment-318">Coming home</a></li><li class="recentcomments"><span class="comment-author-link">Francisco Martinez</span> on <a href="https://michaeldickas.github.io/biketour/coming-home/#comment-313">Coming home</a></li><li class="recentcomments"><span class="comment-author-link">Antonis</span> on <a href="https://michaeldickas.github.io/biketour/coming-home/#comment-309">Coming home</a></li><li class="recentcomments"><span class="comment-author-link">Francois</span> on <a href="https://michaeldickas.github.io/biketour/coming-home/#comment-307">Coming home</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://kind-cind.org/?option=com_k2&view=itemlist&task=user&id=76609" rel="external nofollow" class="url">interstate removals</a></span> on <a href="https://michaeldickas.github.io/biketour/along-the-danube/#comment-295">Along the Danube</a></li></ul></div></div><div class="pin-article span4"><div class="article"><h3 class="title">Archive</h3>		<label class="screen-reader-text" for="archives-dropdown-2">Archive</label>
+		<select id="archives-dropdown-2" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;"><option value="">Select Month</option><option value="https://michaeldickas.github.io/biketour/2015/06/"> June 2015  (6)</option><option value="https://michaeldickas.github.io/biketour/2015/05/"> May 2015  (29)</option></select></div></div>                    </div>
+                </section></div>
+</div>    <section id="bottom_area"><footer id="footer"><div class="container">
+            
+                <div class="row">
+                     
+                    <div class="span12 copyright">
+                    
+                        <p>
+                                                          Copyright Michaels Bike Tour 2020 
+                             
+                            | Theme by <a href="http://www.themeinprogress.com/" target="_blank">Theme in Progress</a> |
+                            <a href="http://wordpress.org/" title="A Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+                        
+                        </p>
+                    
+                    </div>
+                        
+                </div>
+        
+            </div>
+        
+        </footer></section></div>
+
+<div id="back-to-top">
+<a href="#" style=""><i class="icon-chevron-up"></i></a> 
+</div>
+    
+<div id="map" class="geolocation-map" style="width:350px;height:150px;"></div>    <script>jQuery(document).ready(function($) { $('#flags a, a.single-language, .tool-items a').each(function() { $(this).attr('data-lang', $(this).attr('title')); }); $("a.flag").on("click",function(){function l(){doGoogleLanguageTranslator(default_lang+"|"+default_lang); }function n(){doGoogleLanguageTranslator(default_lang+"|"+lang_prefix); } lang_text=$(this).attr('data-lang'),default_lang="en",lang_prefix=$(this).attr("class").split(" ")[2],$(".tool-container").hide(),lang_prefix==default_lang?l():n()}),0==$("body > #google_language_translator").length&&$("#glt-footer").html("<div id='google_language_translator'>")});</script><div id="glt-translate-trigger"><span class="notranslate">Translate »</span></div><div id="glt-toolbar"></div><div id="glt-footer"></div><script type="text/javascript">function GoogleLanguageTranslatorInit() { new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_language_translator');}</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-includes/js/jquery/ui/core.min.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-includes/js/jquery/ui/widget.min.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-includes/js/jquery/ui/tabs.min.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/js/jquery.easing.1.3.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/js/jquery.prettyPhoto.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/js/jquery.scrollTo.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/js/jquery.theme.js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/themes/nova-lite/inc/js/jquery.tinynav.js"></script><script type="text/javascript" src="//maps.google.com/maps/api/js"></script><script type="text/javascript" src="https://michaeldickas.github.io/biketour/wp-content/plugins/simple-map/js/simple-map.min.js"></script></body></html>
