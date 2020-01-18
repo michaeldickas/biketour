@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="http://michaeldickas.com/wp-content/themes/nova-lite/style.css" media="screen"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes"><title>Back in Bavaria – Michaels Bike Tour</title><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//s.w.org"><link rel="stylesheet" id="glt-toolbar-styles-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/toolbar.css" type="text/css" media="all"><link rel="stylesheet" id="google-language-translator-css" href="http://michaeldickas.com/wp-content/plugins/google-language-translator/css/style.css" type="text/css" media="all"><link rel="stylesheet" id="menu-image-css" href="http://michaeldickas.com/wp-content/plugins/menu-image/menu-image.css" type="text/css" media="all"><link rel="stylesheet" id="bootstrap.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/bootstrap.min.css" type="text/css" media="all"><link rel="stylesheet" id="flexslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/flexslider.css" type="text/css" media="all"><link rel="stylesheet" id="font-awesome.min-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/font-awesome.min.css" type="text/css" media="all"><link rel="stylesheet" id="nivoslider-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/nivoslider.css" type="text/css" media="all"><link rel="stylesheet" id="prettyPhoto-css" href="http://michaeldickas.com/wp-content/themes/nova-lite/inc/css/prettyPhoto.css" type="text/css" media="all"><link rel="stylesheet" id="novalite-google-fonts-css" href="//fonts.googleapis.com/css?family=Montez%7COxygen%7CYanone+Kaffeesatz&subset=latin%2Clatin-ext&ver=4.7.16" type="text/css" media="all"><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/jquery-migrate.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-flags.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/plugins/google-language-translator/js/load-toolbar.js"></script><script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><script type="text/javascript">
+		var $j = jQuery.noConflict();
+		$j(function(){
+			var center = new google.maps.LatLng(0.0, 0.0);
+			var myOptions = {
+		      zoom: 9,
+		      center: center,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		    var image = "http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin.png";
+		    var shadow = new google.maps.MarkerImage("http://michaeldickas.com/wp-content/plugins/geolocation-plus/img/wp_pin_shadow.png",
+		    	new google.maps.Size(39, 23),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(12, 25));
+		    var marker = new google.maps.Marker({
+					position: center, 
+					map: map, 
+					title:"Post Location",
+					icon: image,
+					shadow: shadow});
+			
+			var allowDisappear = true;
+			var cancelDisappear = false;
+		    
+			$j(".geolocation-link").mouseover(function(){
+				$j("#map").stop(true, true);
+				var lat = $j(this).attr("name").split(",")[0];
+				var lng = $j(this).attr("name").split(",")[1];
+				var latlng = new google.maps.LatLng(lat, lng);
+				placeMarker(latlng);
+				
+				var offset = $j(this).offset();
+				$j("#map").fadeTo(250, 1);
+				$j("#map").css("z-index", "99");
+				$j("#map").css("visibility", "visible");
+				$j("#map").css("top", offset.top + 20);
+				$j("#map").css("left", offset.left);
+				
+				allowDisappear = false;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j(".geolocation-link").mouseover(function(){
+			});
+			
+			$j(".geolocation-link").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				setTimeout(function() {
+					if((allowDisappear) && (!cancelDisappear))
+					{
+						$j("#map").fadeTo(500, 0, function() {
+							$j("#map").css("z-index", "-1");
+							allowDisappear = true;
+							cancelDisappear = false;
+						});
+					}
+			    },800);
+			});
+			
+			$j("#map").mouseover(function(){
+				allowDisappear = false;
+				cancelDisappear = true;
+				$j("#map").css("visibility", "visible");
+			});
+			
+			$j("#map").mouseout(function(){
+				allowDisappear = true;
+				cancelDisappear = false;
+				$j(".geolocation-link").mouseout();
+			});
+			
+			function placeMarker(location) {
+				map.setZoom(9);
+				marker.setPosition(location);
+				map.setCenter(location);
+			}
+			
+			google.maps.event.addListener(map, "click", function() {
+				window.location = "http://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
+			});
+		});
+	</script><link type="text/css" rel="stylesheet" href="http://michaeldickas.com/wp-content/plugins/geolocation-plus/style.css"><style type="text/css">p.hello { font-size:12px; color:darkgray; }#google_language_translator, #flags { text-align:left; }#google_language_translator, #language { clear:both; width:160px; text-align:right; }#language { float:right; }#flags { text-align:right; width:165px; float:right; clear:right; }#flags ul { float:right !important; }p.hello { text-align:right; float:right; clear:both; }.glt-clear { height:0px; clear:both; margin:0px; padding:0px; }#flags { width:165px; }#flags a { display:inline-block; margin-left:2px; }.goog-tooltip {display: none !important;}.goog-tooltip:hover {display: none !important;}.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}#google_language_translator { width:auto !important; }.goog-te-banner-frame{visibility:hidden !important;}body { top:0px !important;}</style><style type="text/css">
+
+
+</style><style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><style>.simplemap img{max-width:none !important;padding:0 !important;margin:0 !important;}.staticmap,.staticmap img{max-width:100% !important;height:auto !important;}.simplemap .simplemap-content{display:none;}</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #0a0000; background-image: url("http://michaeldickas.com/wp-content/uploads/2015/06/DSC04638r.jpg"); background-position: left top; background-size: auto; background-repeat: repeat-y; background-attachment: scroll; }
+</style><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62252925-1', 'auto');
+  ga('send', 'pageview');
+</script></head><body class="post-template-default single single-post postid-658 single-format-standard custom-background custombody">
+
+<div id="wrapper">
+    
+    <header id="header"><div class="container">
+        
+            <div class="row">
+                
+                <div class="span3">
+                   
+                    <div id="logo">
+                            
+                        <a href="http://michaeldickas.com/" title="Michaels Bike Tour">
+                                
+                            Michaels Bike Tour                                    
+                        </a>
+                                
+                    </div>
+                    
+                </div>
+    
+                <div class="span9">
+                  
+                    <nav id="mainmenu"><ul id="menu-main-menu" class="menu"><li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-35"><a href="http://michaeldickas.com/" class="menu-image-title-before"><span class="menu-image-title">Home</span></a></li>
+<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="http://michaeldickas.com/about-me/" class="menu-image-title-after"><span class="menu-image-title">About me</span></a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="http://michaeldickas.com/route-map/" class="menu-image-title-after"><span class="menu-image-title">Route Map</span></a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="http://michaeldickas.com/thanks-to/" class="menu-image-title-after"><span class="menu-image-title">Thanks to</span></a></li>
+</ul></nav></div>
+                
+            </div>
+            
+        </div>
+    
+    </header><div class="container content">
+	
+    <div class="row">
+       
+    <div class="pin-article span12 full post-658 post type-post status-publish format-standard has-post-thumbnail hentry category-travel">
+		
+		<div class="pin-container"><img src="http://michaeldickas.com/wp-content/uploads/2015/06/DSC05281-1170x429.jpg" class="attachment-blog size-blog wp-post-image" alt=""></div>
+<article class="article"><h1 class="title"> Back in Bavaria </h1>
+			
+	    
+	
+    <div class="line"> 
+    
+        <div class="entry-info">
+       
+            <div class="entry-date"><strong> Posted on: </strong> 04/06/2015 <span class="sep">/</span> </div>
+            
+                        
+            <div class="entry-standard"> 
+            	<strong> Categories: <a href="http://michaeldickas.com/category/travel/" rel="category tag">Travel</a> </strong>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+	<p><a class="geolocation-link" href="#" id="geolocation658" name="48.7194306,10.777732799999967" onclick="return false;">Posted from Donauworth, Bavaria, Germany.</a></p>
+<p>It was very hot today, but I am back in the land of the beer. A cool Weissbier is the best remedy for a thirsty throat!  Luckily, there were many bars along the route to fill up the tank.</p>
+<p>It was a bank holiday, sunshine, and half Bavaria was on their bikes. I never met so many bikers on the route, there were whole families with kids, dog and granny on a bike excursion.</p>
+<p>Today it makes one month that I am on tour. It´s enough now. I am looking forward to reach my parents´ place soon.</p>
+<p>Today´s route: 92,93 km</p>
+<p><a href="http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth.jpg"><img class="alignnone size-full wp-image-665" src="http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth.jpg" alt="Ulm - Donauwörth" width="690" height="388" srcset="http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth.jpg 690w,http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth-24x13.jpg 24w,http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth-36x20.jpg 36w,http://michaeldickas.com/wp-content/uploads/2015/06/Ulm-Donauw%C3%B6rth-48x27.jpg 48w" sizes="(max-width: 690px) 100vw, 690px"></a></p>
+<h3 class="comments">9 comments</h3>
+<section id="comments"><ul class="commentlist"><li class="comment even thread-even depth-1" id="li-comment-249">
+ 
+ <article id="comment-249" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/c1e1027c1b8165f1cf812bdd40e742c3?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/c1e1027c1b8165f1cf812bdd40e742c3?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>conor</cite></span>
+            <time datetime="2015-06-05T15:45:48+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-249">05/06/2015 at 15:45</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-249", "249", "respond", "658" )' aria-label="Reply to conor">Reply</a>      		    		</time></header><p>The good beer should give you that extra little bit to push you over the line.<br>
+One month is enough eh?</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-248">
+ 
+ <article id="comment-248" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite><a href="http://kattegattleden.se/" rel="external nofollow" class="url">Daniel</a></cite></span>
+            <time datetime="2015-06-05T13:26:23+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-248">05/06/2015 at 13:26</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-248", "248", "respond", "658" )' aria-label="Reply to Daniel">Reply</a>      		    		</time></header><p>Habe gerade im Radio gehört, das der “Kattegattleden” heute eingeweiht wird und die auch auf viele deutsche Radfahrer hoffen…<br>
+Falls du noch nicht genug hast, kannst ja gleich noch einen Abstecher nach Norden machen. Siehe Link oben, oder<br><a href="http://kattegattleden.se/" rel="nofollow">http://kattegattleden.se/</a><br>
+Wohl der erste extra ausgewiesene Radweg in Schweden, obwohl es hier viele Radfahrer gibt und auch Wege.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-247">
+ 
+ <article id="comment-247" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/74475e3da6f9a12744f8bc0a855d5c61?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/74475e3da6f9a12744f8bc0a855d5c61?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite><a href="http://www.tensensaciones.com" rel="external nofollow" class="url">Pedro A</a></cite></span>
+            <time datetime="2015-06-05T11:34:49+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-247">05/06/2015 at 11:34</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-247", "247", "respond", "658" )' aria-label="Reply to Pedro A">Reply</a>      		    		</time></header><p>Ya falta muy poco, ánimo y disfruta de tu tierra.Espero que la rodilla vaya bien.</p>
+<p>Saludos</p>
+<p>Pedro y familia.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-246">
+ 
+ <article id="comment-246" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/d2d5976e235972bb4d8c68d10e7b161b?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/d2d5976e235972bb4d8c68d10e7b161b?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>reinhard</cite></span>
+            <time datetime="2015-06-05T10:15:09+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-246">05/06/2015 at 10:15</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-246", "246", "respond", "658" )' aria-label="Reply to reinhard">Reply</a>      		    		</time></header><p>Du hast es bald geschafft ( Klasse Leistung  bis jetzt ) mach weiter so und freue dich auf  den Urlaub in Australien .</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-245">
+ 
+ <article id="comment-245" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://1.gravatar.com/avatar/dc2ed52cebba2af7727f243e961f196f?s=80&d=mm&r=g" srcset="http://1.gravatar.com/avatar/dc2ed52cebba2af7727f243e961f196f?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>antoniatere</cite></span>
+            <time datetime="2015-06-05T09:12:24+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-245">05/06/2015 at 09:12</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-245", "245", "respond", "658" )' aria-label="Reply to antoniatere">Reply</a>      		    		</time></header><p>hola michael, que poco te queda ya,tus padres estaran deseando que llegues, y tu te lo estas pasando genial ,es una aventura muy bonita y la estas disfrutando a tope , animo……</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-244">
+ 
+ <article id="comment-244" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://0.gravatar.com/avatar/f8e4d08a42a5ca153ff5008c106e8114?s=80&d=mm&r=g" srcset="http://0.gravatar.com/avatar/f8e4d08a42a5ca153ff5008c106e8114?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>christoph</cite></span>
+            <time datetime="2015-06-05T08:18:00+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-244">05/06/2015 at 08:18</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-244", "244", "respond", "658" )' aria-label="Reply to christoph">Reply</a>      		    		</time></header><p>die waren alle extra für dich da. das ist DEIN empfangskommittee!  die letzten kilometer – michael spitze!</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-243">
+ 
+ <article id="comment-243" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/83e6e21f34b06a9eac443015bbfacf99?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/83e6e21f34b06a9eac443015bbfacf99?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Obi</cite></span>
+            <time datetime="2015-06-04T23:23:03+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-243">04/06/2015 at 23:23</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-243", "243", "respond", "658" )' aria-label="Reply to Obi">Reply</a>      		    		</time></header><p>Hallo Mike,<br>
+da wirst Du wohl morgen in good old Herzo ankommen, Respekt!!! Cooler Reisebericht, ich saß heute das erste Mal auf dem Bock. Hoffe wir sehen uns die nächsten Tage z.B. Sonntagnachmittag in Malle 😉<br>
+Hau rein<br>
+Obi</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-242">
+ 
+ <article id="comment-242" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/2530afc9cbc55229a57baf4b78eccc71?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Daniel Dickas</cite></span>
+            <time datetime="2015-06-04T22:59:31+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-242">04/06/2015 at 22:59</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-242", "242", "respond", "658" )' aria-label="Reply to Daniel Dickas">Reply</a>      		    		</time></header><p>Hatte heute auch ölprovning. Deutsches Weizen war nicht dabei, trotzdem gutes Bier. Aber ein schönes kühles blondes aus Bayern hot scho wos. Lass ders schmecken. Proost.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+   <li class="comment even thread-even depth-1" id="li-comment-241">
+ 
+ <article id="comment-241" class="comment-container"><div class="comment-avatar">
+       	<img alt="" src="http://2.gravatar.com/avatar/ec4a97beb45cef289b2f2cea62f2b96e?s=80&d=mm&r=g" srcset="http://2.gravatar.com/avatar/ec4a97beb45cef289b2f2cea62f2b96e?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80"></div>
+     
+ 	<div class="comment-text">
+	   <header class="comment-author"><span class="author"><cite>Christof Dickas</cite></span>
+            <time datetime="2015-06-04T21:42:29+00:00" class="comment-date"><a href="http://michaeldickas.com/back-in-bavaria/#comment-241">04/06/2015 at 21:42</a> - 
+	  		<a rel="nofollow" class="comment-reply-link" href="http://michaeldickas.com/back-in-bavaria/" onclick='return addComment.moveForm( "comment-241", "241", "respond", "658" )' aria-label="Reply to Christof Dickas">Reply</a>      		    		</time></header><p>Lieber Michael<br>
+heute hast du geschwitzt, solche Tage sind in Deutschland ein Glück.<br>
+Für morgen sind für Abend Gewitter gemeldet. Weiterhin Guten Wind<br>
+und ebene Straßen.</p>
+      
+	</div>
+    
+ 	<div class="clear"></div>
+    
+</article></li>
+	</ul></section><div class="clear"></div>
+
+<section class="comment-form"><div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/back-in-bavaria/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://michaeldickas.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Comment"><input type="hidden" name="comment_post_ID" value="658" id="comment_post_ID"><input type="hidden" name="comment_parent" id="comment_parent" value="0"></p>			</form>
+			</div>
+	    
+    <div class="clear"></div>
+
+</section></article><div style="clear:both"></div>
+        
+    </div>
+
+	
+	<div class="clear"></div>
+
+           
+    </div>
+</div>
+
+    <section id="bottom_area"><footer id="footer"><div class="container">
+            
+                <div class="row">
+                     
+                    <div class="span12 copyright">
+                    
+                        <p>
+                                                          Copyright Michaels Bike Tour 2020 
+                             
+                            | Theme by <a href="http://www.themeinprogress.com/" target="_blank">Theme in Progress</a> |
+                            <a href="http://wordpress.org/" title="A Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+                        
+                        </p>
+                    
+                    </div>
+                        
+                </div>
+        
+            </div>
+        
+        </footer></section></div>
+
+<div id="back-to-top">
+<a href="#" style=""><i class="icon-chevron-up"></i></a> 
+</div>
+    
+<div id="map" class="geolocation-map" style="width:350px;height:150px;"></div>    <script>jQuery(document).ready(function($) { $('#flags a, a.single-language, .tool-items a').each(function() { $(this).attr('data-lang', $(this).attr('title')); }); $("a.flag").on("click",function(){function l(){doGoogleLanguageTranslator(default_lang+"|"+default_lang); }function n(){doGoogleLanguageTranslator(default_lang+"|"+lang_prefix); } lang_text=$(this).attr('data-lang'),default_lang="en",lang_prefix=$(this).attr("class").split(" ")[2],$(".tool-container").hide(),lang_prefix==default_lang?l():n()}),0==$("body > #google_language_translator").length&&$("#glt-footer").html("<div id='google_language_translator'>")});</script><div id="glt-translate-trigger"><span class="notranslate">Translate »</span></div><div id="glt-toolbar"></div><div id="flags" style="display:none"><ul id="sortable" class="ui-sortable"><li id="English"><a title="English" class="notranslate flag en English"></a></li><li id="German"><a title="German" class="notranslate flag de German"></a></li><li id="Spanish"><a title="Spanish" class="notranslate flag es Spanish"></a></li></ul></div><div id="glt-footer"></div><script type="text/javascript">function GoogleLanguageTranslatorInit() { new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_language_translator');}</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/core.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/widget.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-includes/js/jquery/ui/tabs.min.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.easing.1.3.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.prettyPhoto.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.scrollTo.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.theme.js"></script><script type="text/javascript" src="http://michaeldickas.com/wp-content/themes/nova-lite/inc/js/jquery.tinynav.js"></script></body></html>
